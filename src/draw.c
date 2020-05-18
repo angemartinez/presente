@@ -1,7 +1,7 @@
 #include "draw.h"
 
 #include <raylib.h>
-#include <stdio.h>
+
 
 // Now doesnt draw a brown rect
 void draw_level(const level *lvl){

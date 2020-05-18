@@ -5,7 +5,7 @@
 #include "level.h"
 #include "draw.h"
 #include "state.h"
-#include <stdio.h>
+
 int main(int argc, char const *argv[]){
 
     // Initialization
