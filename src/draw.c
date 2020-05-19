@@ -2,20 +2,25 @@
 
 #include <raylib.h>
 
-void draw_level(const level *lvl){
+void draw_level(const level *lvl)
+{
     // Draw cells, iterate, including borders outside the level
-    for(int y=-1;y<=lvl->size_y;y++){
-        for(int x=-1;x<=lvl->size_x;x++){
-            char cell = level_get(lvl,x,y);
+    for (int y = -1; y <= lvl->size_y; y++)
+    {
+        for (int x = -1; x <= lvl->size_x; x++)
+        {
+            char cell = level_get(lvl, x, y);
             // If the cell is a wall, paint it
-            if(cell=='#'){
-                DrawRectangle(TILE_SIZE*x,TILE_SIZE*y,TILE_SIZE,TILE_SIZE,BROWN);
+            if (cell == '#')
+            {
+                DrawRectangle(TILE_SIZE * x, TILE_SIZE * y, TILE_SIZE, TILE_SIZE, BROWN);
             }
         }
     }
 }
 
-void draw_state(const level *lvl, const state *sta){
+void draw_state(const level *lvl, const state *sta)
+{
 
     // Initialize a camera to be used as drawing context
     Camera2D cam;
@@ -23,8 +28,8 @@ void draw_state(const level *lvl, const state *sta){
     cam.target.x = sta->pla.ent.x;
     cam.target.y = sta->pla.ent.y;
     // make it so that the player is in the middle of the screen
-    cam.offset.x = GetScreenWidth()/2.0;
-    cam.offset.y = GetScreenHeight()/2.0;
+    cam.offset.x = GetScreenWidth() / 2.0;
+    cam.offset.y = GetScreenHeight() / 2.0;
     // set the camera rotation to 0
     cam.rotation = 0.0;
     // set the camera zoom to 1
@@ -37,16 +42,24 @@ void draw_state(const level *lvl, const state *sta){
     draw_level(lvl);
 
     // Draw enemies
-    for(int i=0;i<sta->n_enemies;i++){
+    for (int i = 0; i < sta->n_enemies; i++)
+    {
         // Get a copy of the enemy entity
         entity ent = sta->enemies[i].ent;
         // Initialize a Vector2 that represents the center of the entity position
-        Vector2 vec = {ent.x,ent.y};
+        Vector2 vec = {ent.x, ent.y};
         // Draw a circle with the radius of the entity, color depends on the enemy type
-        if(sta->enemies[i].kind == MINION){
-            DrawCircleV(vec,ent.rad,YELLOW);
-        }else{
-            DrawCircleV(vec,ent.rad,RED);
+        if (sta->enemies[i].kind == MINION)
+        {
+            DrawCircleV(vec, ent.rad, YELLOW);
+        }
+        else if (sta->enemies[i].kind == BRUTE)
+        {
+            DrawCircleV(vec, ent.rad, RED);
+        }
+        else
+        {
+            DrawCircleV(vec, ent.rad, GREEN);
         }
     }
 
@@ -55,21 +68,29 @@ void draw_state(const level *lvl, const state *sta){
         // Get a copy of the player's entity
         entity ent = sta->pla.ent;
         // Initialize a Vector2 that represents the center of the entity position
-        Vector2 vec = {ent.x,ent.y};
+        Vector2 vec = {ent.x, ent.y};
         // Draw a circle with the radius of the entity
-        DrawCircleV(vec,ent.rad,BLUE);
+        DrawCircleV(vec, ent.rad, BLUE);
     }
 
     // Draw bullets
-    for(int i=0;i<sta->n_bullets;i++){
+    for (int i = 0; i < sta->n_bullets; i++) // Modified
+    {
         // Get a copy of the bullet entity
         entity ent = sta->bullets[i].ent;
         // Initialize a Vector2 that represents the center of the entity position
-        Vector2 vec = {ent.x,ent.y};
+        Vector2 vec = {ent.x, ent.y};
         // Draw a circle with the radius of the entity
-        DrawCircleV(vec,ent.rad,PINK);
+        if (sta->bullets[i].tipo == 0)
+        {
+            DrawCircleV(vec, ent.rad, PINK);
+        }
+        else
+        {
+            DrawCircleV(vec, ent.rad, BLACK);
+        }
     }
-
     // Stop drawing relative to the camera
+
     EndMode2D();
 }

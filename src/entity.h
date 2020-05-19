@@ -4,17 +4,20 @@
 #include "level.h"
 
 // An entity represents the common part of all objects in the game
-typedef struct {
+typedef struct
+{
     // position
-    float x,y;
+    float x, y;
     // velocity
-    float vx,vy;
+    float vx, vy;
     // radious
     int rad;
     // hit points (or damage)
     int hp;
     // if it is dead or not
     int dead;
+
+    float save_distance;
 } entity;
 
 /* Updates the entity position according to its velocity.
