@@ -24,6 +24,8 @@ state *state_new(){
     return sta;
 }
 
+
+
 void state_update(level *lvl, state *sta){
 
     // == Update player speed according to buttons
