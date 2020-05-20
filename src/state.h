@@ -35,21 +35,20 @@
 // ==== PLAYER DEFINITION
 typedef struct {
     entity ent;
-    // Cooldown of the player's weapon. The player can shoot when it is <=0.
     int cooldown;
 } player;
 
 // ==== ENEMY DEFINITION
-typedef enum {MINION=0, BRUTE=1, BLIND=2, SNIPER=3} enemykind;
+typedef enum {MINION=0, BRUTE=1, BLIND=2, SNIPER=3} enemykind; //add BLIND and SNIPER enemy
 
 typedef struct {
     entity ent;
-    int cooldown; // Cooldown of the player's weapon.
+    int cooldown; //cooldown for shooting enemies
     enemykind kind;
 } enemy;
 
 // ==== BULLET DEFINTION
-typedef enum {p=0, e=1} typye_bullet; // Type of bullet, 0 for player, 1 for enemies
+typedef enum {p=0, e=1} typye_bullet; //enum to use in type_bullet
 
 typedef struct {
     entity ent;
@@ -63,35 +62,29 @@ typedef struct {
 
 #define N_BUTTONS 5
 
-// A state represents everything that's happening with the game objects at a given time.
 typedef struct {
-    // The player
     player pla;
 
-    // An array of enemies:
     int n_enemies;
     enemy enemies[MAX_ENEMIES];
 
-    // An array of bullets:
     int n_bullets;
     bullet bullets[MAX_BULLETS];
 
-    // State of the controls, should be updated on each step.
+    // Controls
     int button_state[N_BUTTONS];
     float aim_angle;
 
 } state;
 
-// Creates an empty state, allocating memory for it.
+
+
 state *state_new();
 
-// Updates the state of the game to the next frame.
 void state_update(level *lvl, state *sta);
 
-// Put enemies at random in the state until it has n_enemies enemies.
 void state_populate_random(level *lvl, state *sta, int n_enemies);
 
-// Deletes a state and the memory it requires.
 void state_free(state *sta);
 
 
