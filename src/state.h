@@ -8,10 +8,24 @@
 #define PLAYER_SPEED 4
 #define PLAYER_COOLDOWN 8
 
+//Cooldowns for Shooting enemies
+#define BLIND_COOLDOWN 30
+#define SNIPER_COOLDOWN 50
+
 #define MINION_HP   4
 #define MINION_RAD 12
+
 #define BRUTE_HP   12
 #define BRUTE_RAD  16
+
+
+//New Enemy BLIND (Shoots aleatory)
+#define BLIND_HP   10
+#define BLIND_RAD  20
+
+//New Enemy SNIPER (Shoots following the player)
+#define SNIPER_HP   5
+#define SNIPER_RAD  10
 
 #define BULLET_DMG 3
 #define BULLET_SPEED 16
@@ -26,18 +40,20 @@ typedef struct {
 } player;
 
 // ==== ENEMY DEFINITION
-typedef enum {MINION=0, BRUTE=1} enemykind;
+typedef enum {MINION=0, BRUTE=1, BLIND=2, SNIPER=3} enemykind;
 
 typedef struct {
     entity ent;
+    int cooldown; // Cooldown of the player's weapon.
     enemykind kind;
 } enemy;
 
 // ==== BULLET DEFINTION
+typedef enum {p=0, e=1} typye_bullet; // Type of bullet, 0 for player, 1 for enemies
 
 typedef struct {
     entity ent;
-    // TODO: We may want to add more fields...
+    typye_bullet t_bullet; //type_bullet to compare bullets from enemies or from player
 } bullet;
 
 // ==== STATE DEFINITION
