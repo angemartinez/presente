@@ -10,4 +10,7 @@ void draw_level(const level *lvl);
 // Draws the whole state and the level in the screen
 void draw_state(const level *lvl, const state *sta);
 
+// Draws the dynamic objects in the screen (ISSUE 14)
+void draw_dynamic_objects(const level *lvl, const state *sta);
+
 #endif
