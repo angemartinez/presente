@@ -1,6 +1,8 @@
 #include "draw.h"
 
 #include <raylib.h>
+#include <math.h>
+#define RAYGUI_IMPLEMENTATION
 
 
 // Now doesnt draw a brown rect
@@ -158,6 +160,68 @@ void draw_state(const level *lvl, const state *sta){
         DrawCircleV(vec,ent.rad,PINK);
     }
 
+    //draw helth bar     https://knowyourmeme.com/memes/helth
+    
+    {
+    
+
+        float radioI = 40.0f;
+        float radioE = 60.0f;
+        Vector2 lugar = {cam.target.x+320,cam.target.y+230};   //320,240
+
+        int AnguloI=0-(36*(sta->pla.ent.hp-10));
+        int AnguloF=360;  //arreglar
+        int segmentos= sta->pla.ent.hp; 
+
+        DrawRing(lugar,radioI, radioE, AnguloI, AnguloF, segmentos, Fade(GREEN, 0.6f));
+        DrawRingLines(lugar, radioI, radioE, AnguloI, AnguloF, segmentos, Fade(BLACK, 0.4));
+
+        
+    }
+
+    //draw enemi helth
+    {
+        
+        for(int k=0;k<sta->n_enemies;k++){
+                int enemiH = sta->enemies[k].ent.hp;
+                float enemiX = sta->enemies[k].ent.x;
+                float enemiY = sta->enemies[k].ent.y;
+                //draw
+                DrawText(FormatText("%d", enemiH),enemiX,enemiY+15,12,BLACK);
+                }
+    }
+    //draw cooldown
+    {
+        float ri= 13.0f;
+        float re= 15.0f;
+        Vector2 recarga = {cam.target.x,cam.target.y};    //no se me ocurrio otra forma de decir cooldown sin dejar la escoba
+
+        int Ai=0;
+        int Af=0;
+        if(sta->pla.cooldown >= 0) {  //aparece un circulo cuando no se pueda disparar 
+            Af=360;
+            }
+        else {
+            Af=0;
+        }
+        int seg=0;
+
+        DrawRing(recarga,ri,re,Ai,Af,seg,Fade(DARKGRAY,0.8f));
+    } 
+    //draw eim
+    {
+    float mouse_y = GetMouseY()-GetScreenHeight()/2;
+    float mouse_x = GetMouseX()-GetScreenWidth()/2;
+
+    Vector2 mira= {cam.target.x + mouse_x ,cam.target.y + mouse_y };
+
+    DrawCircleV(mira,5,DARKGRAY);
+    }
+        //linea apuntando al mouse
     // Stop drawing relative to the camera
     EndMode2D();
 }
+
+
+//agregar
+// void DisableCursor(void);
