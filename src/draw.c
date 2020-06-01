@@ -134,17 +134,18 @@ void draw_state(const level *lvl, const state *sta){
         // Initialize a Vector2 that represents the center of the entity position
         Vector2 vec = {ent.x, ent.y};
         // Draw a circle with the radius of the entity, color depends on the enemy type
-        if (sta->enemies[i].kind == MINION)
-        {
-            DrawCircleV(vec, ent.rad, YELLOW);
-        }
-        else if (sta->enemies[i].kind == BRUTE)
-        {
+        if(sta->enemies[i].kind == MINION){
+            DrawCircleV(vec,ent.rad,YELLOW);
+        }else if(sta->enemies[i].kind == BLIND){ //Draw BLIND enemy
+            DrawCircleV(vec,ent.rad,GREEN);
+        }else if(sta->enemies[i].kind == SNIPER){ //Draw SNIPER enemy
+            DrawCircleV(vec,ent.rad,BLACK);
+        } else if (sta->enemies[i].kind == BRUTE){
+            DrawCircleV(vec,ent.rad,RED);
+        } else if (sta->enemies[i].kind == SENTRY){
+            DrawCircleV(vec, ent.rad, DARKGREEN);
+        } else {
             DrawCircleV(vec, ent.rad, RED);
-        }
-        else
-        {
-            DrawCircleV(vec, ent.rad, GREEN);
         }
     }
 
@@ -166,12 +167,9 @@ void draw_state(const level *lvl, const state *sta){
         // Initialize a Vector2 that represents the center of the entity position
         Vector2 vec = {ent.x, ent.y};
         // Draw a circle with the radius of the entity
-        if (sta->bullets[i].tipo == 0)
-        {
+        if (sta->bullets[i].tipo == 0){
             DrawCircleV(vec, ent.rad, PINK);
-        }
-        else
-        {
+        }else{
             DrawCircleV(vec, ent.rad, BLACK);
         }
     }
@@ -230,6 +228,10 @@ void draw_state(const level *lvl, const state *sta){
         DrawCircleV(mira,5,DARKGRAY);
     }
     // Stop drawing relative to the camera
-
     EndMode2D();
+
+
+    // Draw game over
+    if (sta->pla.ent.hp <= 0) DrawText("GAME OVER!", 150, 200, 40, RED);
+    if (sta->n_enemies == 0) DrawText("YOU'VE WON THE GAME!", 150, 200, 40, RED);
 }

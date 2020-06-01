@@ -4,3 +4,5 @@ game:
 		src/*.c -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 play: game
 	cd bin; ./presente
+debug: game
+	cd bin; valgrind ./presente

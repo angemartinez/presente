@@ -1,17 +1,21 @@
 
 #include <raylib.h>
 #include <math.h>
+#include <time.h>
+#include <stdlib.h>
 
 #include "level.h"
 #include "draw.h"
 #include "state.h"
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]){
+
+    // Intialize srand for random numbers generation
+    srand(time(NULL));
 
     // Initialization
-    const int screen_width = 1024;
-    const int screen_height = 768;
+    const int screen_width = 800;
+    const int screen_height = 600;
     float timer=0.0; // Timer for ISSUE 14
     int frame_n=0;  // frame number for ISSUE 14 (dynamic objects)
 
