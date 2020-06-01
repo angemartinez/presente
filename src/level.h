@@ -1,6 +1,6 @@
 #ifndef LEVEL_H
 #define LEVEL_H
-
+#include <raylib.h>
 #define TILE_SIZE 48
 
 /* A level is a matrix of cells, each cell is represented using chars.
@@ -10,6 +10,7 @@
 typedef struct {
     int size_x, size_y;
     char **cells;
+    Texture2D texture_lvl,texture_objects; // Extra ISSUE 14, lvl now has the textures
 } level;
 
 // Create a new level with the given size, allocates memory for it.

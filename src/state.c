@@ -24,8 +24,7 @@ state *state_new()
     return sta;
 }
 
-void state_update(level *lvl, state *sta)
-{
+void state_update(level *lvl, state *sta){
 
     // == Update player speed according to buttons
     // (mov_x,mov_y) is a vector that represents the position of the analog control

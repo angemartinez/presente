@@ -81,6 +81,8 @@ typedef struct
     // State of the controls, should be updated on each step.
     int button_state[N_BUTTONS];
     float aim_angle;
+    // Added number of frame (ISSUE 14)
+    int frame;
 
 } state;
 
