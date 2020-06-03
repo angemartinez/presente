@@ -1,6 +1,6 @@
-# presente
+# Angela Martinez -Rol:682019101-1
 
-Low budget game for LP
+Issue#1
 
 (ﾉ*ФωФ)ﾉ
 
@@ -9,32 +9,7 @@ Low budget game for LP
 ( o.o )
  > ^ <
 ```
-
-<(0w0)>
-
-                   .               ,.
-                  T."-._..---.._,-"/|
-                  l|"-.  _.v._   (" |
-                  [l /.'_ \; _~"-.`-t
-                  Y " _(o} _{o)._ ^.|
-                  j  T  ,-<v>-.  T  ]
-                  \  l ( /-^-\ ) !  !
-                   \. \.  "~"  ./  /c-..,__
-                     ^r- .._ .- .-"  `- .  ~"--.
-                      > \.                      \
-                      ]   ^.                     \
-                      3  .  ">            .       Y  -Row
-         ,.__.--._   _j   \ ~   .         ;       |
-        (    ~"-._~"^._\   ^.    ^._      I     . l
-         "-._ ___ ~"-,_7    .Z-._   7"   Y      ;  \        _
-            /"   "~-(r r  _/_--._~-/    /      /,.--^-._   / Y
-            "-._    '"~~~>-._~]>--^---./____,.^~        ^.^  !
-                ~--._    '   Y---.                        \./
-                     ~~--._  l_   )                        \
-                           ~-._~~~---._,____..---           \
-                               ~----"~       \
-                                              \
-
+Se modificó el main.c con el objeto de lectura del archivo y determinar si se esta entregando el archivo por la terminal o no, en el caso de que no se entregue un nombre de archivo por la terminal, el juego continúa tal como lo realizó el profesor. Si se entrega el archivo por la terminar este es leido por la funcion load_txt del archivo load.c, el archivo es leido para capturar el mapa, se verifica que el mapa no contenga caracteres que no correspondan y posteriormente se asignan los valores. si encuentra( #:muralla/p:posicion del player/m:minion/b:brute) para ejecutar el juego. 
 
 ```
 .       .
